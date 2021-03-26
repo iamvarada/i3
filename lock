@@ -1,0 +1,18 @@
+#!/bin/bash
+# located at ${i3_CONFIG_PATH}
+
+LOCK="betterlock1"
+i3_CONFIG_PATH=${HOME}/.config/i3/
+if [ ${LOCK} == "betterlock" ]
+then
+  bash ${i3_CONFIG_PATH}/betterlockscreen --lock
+else
+	if [ ${LOCK} == "ubuntu" ]
+	then
+		gnome-screensaver-command --lock
+	else
+  		scrot /tmp/screenshot.png
+  		convert /tmp/screenshot.png -blur 0x2 /tmp/screenshotblur.png
+  		i3lock -i /tmp/screenshotblur.png
+  	fi
+fi
